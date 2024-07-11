@@ -2,8 +2,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const fs = require('fs');
-const productRouter = require('./routes/product')
+const fs = require("fs");
+const productRouter = require("./routes/product");
+const categoryRouter = require('./routes/category');
 dotenv.config();
 
 const databaseStr = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.qatrhwq.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
@@ -16,7 +17,7 @@ const accessLogStream = fs.createWriteStream(logFilePath, {
 });
 
 mongoose
-.connect(databaseStr)
+  .connect(databaseStr)
   .then(() => {
     console.log("Connection to the database is successful");
   })
@@ -24,10 +25,10 @@ mongoose
     console.log("Database connection error:", err);
   });
 
-
 app.use(express.json());
 app.use(morgan("tiny", { stream: accessLogStream }));
-app.use(process.env.API_URL, productRouter);
+app.use(`${process.env.API_URL}/products`, productRouter);
+app.use(`${process.env.API_URL}/category`, categoryRouter);
 
 
 const server = app.listen(port, () => {

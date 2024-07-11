@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {postProduct, getAllProducts} = require('../controllers/product');
+const { postProduct, getAllProducts } = require("../controllers/product");
 
-router.post('/products', postProduct);
-router.get('/products', getAllProducts);
+router.post("/", postProduct);
+router.get("/", getAllProducts);
 
 module.exports = router;
