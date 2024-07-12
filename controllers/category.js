@@ -18,6 +18,59 @@ const getAllCategories = async function getAllCategories(_, res) {
   }
 };
 
+const getCategory = async function getCategory(req, res) {
+  try {
+    const category = await Category.findById(req.params.id);
+    if (category) {
+      res.status(200).json({
+        status: "Success",
+        category,
+      });
+    } else {
+      res.status(404).json({
+        status: "Failed",
+        message: "Category wasn't found",
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      status: "Failed",
+      error: err,
+    });
+  }
+};
+
+const updateCategory = async function updateCategory(req, res) {
+  try {
+    const category = await Category.findByIdAndUpdate(
+      req.params.id,
+      {
+        name: req.body.name,
+        icon: req.body.icon,
+        color: req.body.color,
+      },
+      { new: true },
+    );
+    if (category) {
+      res.status(201).json({
+        status: "Success",
+        category,
+      });
+    } else {
+      res.status(404).json({
+        status: "Failed",
+        message: "Category wasn't found",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: "Failed",
+      error: err,
+    });
+  }
+};
+
 const postCategory = async function postCategory(req, res) {
   try {
     let category = new Category({
@@ -31,7 +84,7 @@ const postCategory = async function postCategory(req, res) {
       category,
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(400).json({
       status: "Failed",
       error: err,
     });
@@ -39,17 +92,16 @@ const postCategory = async function postCategory(req, res) {
 };
 
 const deleteCategory = function deleteCategory(req, res) {
-  console.log(req.params.id);
   Category.findByIdAndDelete(req.params.id)
     .then((category) => {
-      if (!category) {
+      if (category) {
         res.status(200).json({
           status: "Success",
           message: "Category was deleted successfully",
         });
       } else {
         res.status(404).json({
-          status: "Failed",
+          status: "Success",
           message: "Category wasn't found",
         });
       }
@@ -62,4 +114,10 @@ const deleteCategory = function deleteCategory(req, res) {
     });
 };
 
-module.exports = { getAllCategories, postCategory, deleteCategory };
+module.exports = {
+  getAllCategories,
+  postCategory,
+  deleteCategory,
+  getCategory,
+  updateCategory
+};

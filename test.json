@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Item",
+        "icon": "Icon",
+        "color": "color"
+    },
+    {
+        "name": "Item1",
+        "icon": "Icon2",
+        "color": "color3"
+    },
+    {
+      "name": "Item45",
+      "icon": "Icon32",
+      "color": "color20"
+    }
+]
