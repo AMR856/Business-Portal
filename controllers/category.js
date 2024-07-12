@@ -84,7 +84,7 @@ const postCategory = async function postCategory(req, res) {
       category,
     });
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       status: "Failed",
       error: err,
     });
@@ -114,10 +114,27 @@ const deleteCategory = function deleteCategory(req, res) {
     });
 };
 
+const getCount = async function getCount(_, res) {
+  try {
+    const categoryCount = await Category.countDocuments();
+    res.status(200).json({
+      status: "Sucesss",
+      count: categoryCount,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: "Failed",
+      error: err,
+    });
+  }
+};
+
 module.exports = {
   getAllCategories,
   postCategory,
   deleteCategory,
   getCategory,
-  updateCategory
+  updateCategory,
+  getCount
 };

@@ -13,5 +13,35 @@
       "name": "Item45",
       "icon": "Icon32",
       "color": "color20"
+    },
+    {
+      "name": "Sample Product",
+      "description": "This is a sample product description.",
+      "richDescription": "",
+      "image": "",
+      "images": [],
+      "brand": "",
+      "price": 0,
+      "category": "6690766acae1392df95cc387", 
+      "countInStock": 0,
+      "rating": 0,
+      "numReviews": 0,
+      "isFeatured": false,
+      "dataCreated": "2024-07-12T00:00:00.000Z"
+    },
+    {
+      "name": "Sample Product 1",
+      "description": "This is a sample product description.",
+      "richDescription": "",
+      "image": "",
+      "images": [],
+      "brand": "",
+      "price": 0,
+      "category": "6690766acae1392df95cc387", 
+      "countInStock": 0,
+      "rating": 0,
+      "numReviews": 0,
+      "isFeatured": false,
+      "dataCreated": "2024-07-12T00:00:00.000Z"
     }
 ]

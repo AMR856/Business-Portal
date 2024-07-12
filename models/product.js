@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
-  descrition: {
+  description: {
     type: String,
     required: [true, "Description is a required field"],
     trim: true,
@@ -70,6 +70,15 @@ const productSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+productSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+productSchema.set('toJSON', {
+    virtuals: true,
+});
+
 
 const Product = mongoose.model("Product", productSchema);
 
