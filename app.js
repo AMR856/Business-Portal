@@ -5,11 +5,15 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const productRouter = require("./routes/product");
 const categoryRouter = require('./routes/category');
+const userRouter = require('./routes/user');
 dotenv.config();
-
+const authJwt = require('./helpers/jwt');
+const errorHandler = require("./helpers/error-handler");
 const databaseStr = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.qatrhwq.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
 const app = express();
 const port = process.env.PORT || 3000;
+
+
 
 const logFilePath = "./http.log";
 const accessLogStream = fs.createWriteStream(logFilePath, {
@@ -27,9 +31,12 @@ mongoose
 
 app.use(express.json());
 app.use(morgan("tiny", { stream: accessLogStream }));
+app.use(authJwt());
+app.use(errorHandler);
+
 app.use(`${process.env.API_URL}/products`, productRouter);
 app.use(`${process.env.API_URL}/category`, categoryRouter);
-
+app.use(`${process.env.API_URL}/users`, userRouter);
 
 const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);

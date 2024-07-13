@@ -43,5 +43,41 @@
       "numReviews": 0,
       "isFeatured": false,
       "dataCreated": "2024-07-12T00:00:00.000Z"
+    },
+    {
+      "name": "John Doe",
+      "email": "johndoe@example.com", 
+      "passswordHash": "hashedPassword123",
+      "street": "123 Main St",
+      "apartment": "4B",
+      "city": "Anytown",
+      "zip": "12345",
+      "country": "USA",
+      "phone": "555-1234",
+      "isAdmin": false
+    },
+    {
+      "name": "Amr Alnas",
+      "email": "amer.live477@gmail.com", 
+      "passwordHash": "hashedPassword123",
+      "street": "123 Main St",
+      "apartment": "4B",
+      "city": "Anytown",
+      "zip": "12345",
+      "country": "USA",
+      "phone": "555-1234",
+      "isAdmin": false
+    },
+    {
+      "name": "Hassan",
+      "email": "someEmail@gmail.com", 
+      "password": "hashedPasswordhassan12312",
+      "street": "123 Main St",
+      "apartment": "4B",
+      "city": "Anytown",
+      "zip": "12345",
+      "country": "USA",
+      "phone": "555-1234",
+      "isAdmin": false
     }
 ]
