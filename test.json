@@ -21,7 +21,7 @@
       "image": "",
       "images": [],
       "brand": "",
-      "price": 0,
+      "price": 20,
       "category": "6690766acae1392df95cc387", 
       "countInStock": 0,
       "rating": 0,
@@ -36,7 +36,7 @@
       "image": "",
       "images": [],
       "brand": "",
-      "price": 0,
+      "price": 40,
       "category": "6690766acae1392df95cc387", 
       "countInStock": 0,
       "rating": 0,
@@ -79,5 +79,21 @@
       "country": "USA",
       "phone": "555-1234",
       "isAdmin": false
+    },
+    {
+      "orderItem": [
+        {
+          "quantity": 2,
+          "product": "669457776a4557dff5499e1c"
+        }
+      ],
+      "shippingAddress1": "123 Main St",
+      "shippingAddress2": "Apt 4B",
+      "city": "New York",
+      "zip": "10001",
+      "country": "USA",
+      "phone": "123-456-7890",
+      "status": "Pending",
+      "user": "669445224c382e2a2837e262"
     }
 ]

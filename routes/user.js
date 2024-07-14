@@ -9,5 +9,5 @@ router.get('/:id', getUser);
 router.post('/login', loginUser);
 router.post('/register', registerUser);
 router.get('/get/count', getCount);
-router.delete('/:id', deleteUser)
+router.delete('/:id', deleteUser);
 module.exports = router;

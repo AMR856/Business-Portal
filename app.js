@@ -6,6 +6,8 @@ const fs = require("fs");
 const productRouter = require("./routes/product");
 const categoryRouter = require('./routes/category');
 const userRouter = require('./routes/user');
+const orderRouter = require('./routes/order');
+const orderItemsRouter = require('./routes/order-item');
 dotenv.config();
 const authJwt = require('./helpers/jwt');
 const errorHandler = require("./helpers/error-handler");
@@ -31,12 +33,14 @@ mongoose
 
 app.use(express.json());
 app.use(morgan("tiny", { stream: accessLogStream }));
-app.use(authJwt());
+// app.use(authJwt());
 app.use(errorHandler);
 
 app.use(`${process.env.API_URL}/products`, productRouter);
 app.use(`${process.env.API_URL}/category`, categoryRouter);
 app.use(`${process.env.API_URL}/users`, userRouter);
+app.use(`${process.env.API_URL}/orders`, orderRouter);
+app.use(`${process.env.API_URL}/order-items`, orderItemsRouter);
 
 const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);

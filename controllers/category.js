@@ -63,7 +63,6 @@ const updateCategory = async function updateCategory(req, res) {
       });
     }
   } catch (err) {
-    console.log(err);
     res.status(400).json({
       status: "Failed",
       error: err,
