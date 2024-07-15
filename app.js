@@ -8,6 +8,7 @@ const categoryRouter = require('./routes/category');
 const userRouter = require('./routes/user');
 const orderRouter = require('./routes/order');
 const orderItemsRouter = require('./routes/order-item');
+
 dotenv.config();
 const authJwt = require('./helpers/jwt');
 const errorHandler = require("./helpers/error-handler");
@@ -36,6 +37,7 @@ app.use(morgan("tiny", { stream: accessLogStream }));
 // app.use(authJwt());
 app.use(errorHandler);
 
+app.use('public/uploads', express.static(__dirname + 'public/uploads'))
 app.use(`${process.env.API_URL}/products`, productRouter);
 app.use(`${process.env.API_URL}/category`, categoryRouter);
 app.use(`${process.env.API_URL}/users`, userRouter);
