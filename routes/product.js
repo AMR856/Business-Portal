@@ -1,8 +1,55 @@
 const express = require("express");
 const router = express.Router();
 const { postProduct, getAllProducts, getProduct, updateProduct, deleteProduct, getCount, isFeatured } = require("../controllers/product");
+const { request } = require("chai");
+const multer = request('multer');
+
+// for filemap explain type for pass
+const FILE_TYPE_MAP = {
+  'image/png': 'png',
+  'image/jpeg': 'jpeg',
+  'image/jpg': 'jpg'
+}
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/uploads')
+    },
+    filename: function (req, file, cb) {
+        const fileName = file.originalname.split(' ').join('-');
+        cb(null, fieldname + '-' + Date.now())
+    }
+  })
+  
+  const uploadOptions = multer({ storage: storage })
+
 
 router.post("/", postProduct);
+router.post(`/`, uploadOptions.single('image'), async (req, res) =>{
+    const category = await Category.findById(req.body.category);
+    if(!category) return res.status(400).send('Invalid Category')
+
+    const file = req.file;
+    if(!file) return res.status(400).send('No image in the request')
+
+    const fileName = file.filename
+    const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
+    let product = new Product({
+        name: req.body.name,
+        description: req.body.description,
+        richDescription: req.body.richDescription,
+        image: `${basePath}${fileName}`,// "http://localhost:3000/public/upload/image-2323232"
+        brand: req.body.brand,
+        price: req.body.price,
+        category: req.body.category,
+        countInStock: req.body.countInStock,
+        rating: req.body.rating,
+        numReviews: req.body.numReviews,
+        isFeatured: req.body.isFeatured,
+    })
+    
+});
 router.get("/", getAllProducts);
 router.get('/:id', getProduct);
 router.put('/:id', updateProduct);
